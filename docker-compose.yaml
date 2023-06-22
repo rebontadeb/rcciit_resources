@@ -1,0 +1,52 @@
+version: '3.5'
+
+services:
+  mysqldb:
+    container_name: todo-app-mysql
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: mytodoapp
+      MYSQL_DATABASE: todoapp
+      PGDATA: /data/mysqldb
+    volumes:
+       - mysqldbvol:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - mysqldb
+    restart: unless-stopped
+
+  todoapi:
+    container_name: todoapi_container
+    image: go-todo-crud-api:v1
+    ports:
+      - "4100:4100"
+    networks:
+      - mysqldb
+      - todoapinw
+    depends_on:
+      - mysqldb
+    restart: unless-stopped
+
+  flaskweb:
+    container_name: flaskweb_container
+    image: go-todo-crud-api:v1
+    ports:
+      - "4200:4200"
+    networks:
+      - mysqldb
+      - todoapinw
+    depends_on:
+      - todoapi  
+    restart: unless-stopped    
+
+    
+
+networks:
+  mysqldb:
+    driver: bridge
+  todoapinw:
+    driver: bridge  
+
+volumes:
+    mysqldbvol:
