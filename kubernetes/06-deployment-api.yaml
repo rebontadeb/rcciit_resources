@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todoapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todoapi
+  template:
+    metadata:
+      labels:
+        app: todoapi
+    spec:
+      containers:
+      - name: todoapi
+        image: quay.io/rebontadeb/training/go-todo-crud-api-x86-64:v1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        ports:
+        - containerPort: 4100
+        volumeMounts:
+          - mountPath: /app/config/todo-api.properties
+            name: todo-api-config
+            subPath: todo-api.properties
+      volumes:
+        - name: todo-api-config
+          configMap:
+            name: todo-app-configmap
+            items:
+            - key: todo-api.properties
+              path: todo-api.properties

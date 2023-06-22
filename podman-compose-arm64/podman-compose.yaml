@@ -21,7 +21,7 @@ services:
     ports:
       - "4100:4100"
     volumes:
-       - ${PWD}/properties/todo-api.properties:/app/config/todo-api.properties:z
+       - ${PWD}/properties/todo-api.properties:/app/config/todo-api.properties
     networks:
       - mysqldb
       - todoapinw
@@ -33,7 +33,7 @@ services:
     ports:
       - "4200:4200"
     volumes:
-       - ${PWD}/properties/web-app-config.properties:/config/web-app-config.properties:z
+       - ${PWD}/properties/web-app-config.properties:/config/web-app-config.properties
     networks:
       - todoapinw
     restart: unless-stopped    
