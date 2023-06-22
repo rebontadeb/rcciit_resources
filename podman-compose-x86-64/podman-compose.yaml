@@ -17,7 +17,7 @@ services:
 
   todoapi:
     container_name: todoapi_container
-    image: quay.io/rebontadeb/training/go-todo-crud-api-arm64:v1
+    image: quay.io/rebontadeb/training/go-todo-crud-api-x86-64:v1
     ports:
       - "4100:4100"
     volumes:
@@ -29,7 +29,7 @@ services:
 
   flaskweb:
     container_name: flaskweb_container
-    image: quay.io/rebontadeb/training/flask-app-arm64:v1 
+    image: quay.io/rebontadeb/training/flask-app-x86-64:v1 
     ports:
       - "4200:4200"
     volumes:
