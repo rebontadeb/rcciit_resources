@@ -1,0 +1,7 @@
+nodeName: "node-1"
+socketName: "/run/topolvm/lvmd.sock"
+deviceClasses:
+  - name: "ssd"
+    volumeGroup: "vg_ssd"
+    default: true
+    spareGB: 10
