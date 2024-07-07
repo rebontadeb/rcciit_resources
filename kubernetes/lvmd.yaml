@@ -5,3 +5,8 @@ deviceClasses:
     volumeGroup: "vg_ssd"
     default: true
     spareGB: 10
+
+volume-groups:
+  - name: "vg_ssd"
+    physical-volumes:
+      - "/dev/nvme0n1"
