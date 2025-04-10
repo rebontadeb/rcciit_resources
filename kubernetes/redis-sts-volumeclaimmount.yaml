@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
       - name: redis
-        image: redis:latest
+        image: quay.io/rebontadeb/redis:latest
         ports:
         - containerPort: 6379
         volumeMounts:
